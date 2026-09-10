@@ -1,0 +1,749 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-Garder ses connaissances à jour — un devoir de l'ingénieur</title><style>
+:root{--bg:#FBF7F0;--ink:#26303B;--soft:#5A6472;--line:#E4DCCF;--ar:#0E7C86}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:17px/1.6 Verdana,Tahoma,"Trebuchet MS",sans-serif}
+.wrap{max-width:1000px;margin:auto;padding:0 14px 80px}
+h1{font-size:1.4rem;margin:20px 0 3px;line-height:1.3}
+.sub{color:var(--soft);font-size:.83rem;margin:0 0 4px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(251,247,240,.97);backdrop-filter:blur(7px);
+ border-bottom:2px solid var(--line);padding:9px 0;margin:14px 0 18px}
+.barin{max-width:1000px;margin:auto;padding:0 14px;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.barin button{font-family:inherit;font-size:.74rem;background:#fff;border:1px solid #CFC6B6;
+ border-radius:99px;padding:5px 13px;cursor:pointer;color:var(--ink)}
+#q{font-family:inherit;font-size:.76rem;border:1px solid #CFC6B6;border-radius:99px;
+ padding:6px 14px;min-width:190px;background:#fff;color:var(--ink)}
+#cnt{font-size:.73rem;color:var(--soft)}
+h2.grp{font-size:.95rem;margin:30px 0 10px;padding:8px 14px;background:#EDE6DA;
+ border-radius:9px;border-left:6px solid var(--soft)}
+article{background:#fff;border:1px solid var(--line);border-left:7px solid var(--soft);
+ border-radius:12px;padding:14px 18px 16px;margin:14px 0}
+.hd{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;margin-bottom:8px}
+.no{color:#fff;border-radius:99px;padding:2px 11px;font-size:.7rem;font-variant-numeric:tabular-nums}
+.ti{font-size:.95rem;font-weight:bold;line-height:1.4;flex:1 1 100%}
+pre{background:#F7F4EE;border:1px solid var(--line);border-radius:9px;
+ padding:13px 15px;margin:10px 0;overflow-x:auto;
+ font:13px/1.62 "DejaVu Sans Mono",Consolas,"Courier New",monospace;
+ white-space:pre;color:#26303B}
+.rgl{background:#F4F1EA;border:1px solid #DDD4C4;border-left:6px solid #8A93A0;
+ border-radius:10px;padding:11px 15px;margin:10px 0;font-size:.85rem;line-height:1.65}
+.qz{background:#F4F9FD;border:1px solid #CBDDEA;border-left:6px solid #1D6FA3;
+ border-radius:10px;padding:11px 15px;margin:12px 0 0;font-size:.83rem}
+.qz>b.t{display:block;color:#1D6FA3;font-size:.75rem;letter-spacing:.05em;margin-bottom:7px}
+.qz .qi{margin:9px 0;padding-bottom:8px;border-bottom:1px dashed #D8E4EE}
+.qz .qi:last-child{border-bottom:none;padding-bottom:0}
+.qz .qid{background:#1D6FA3;color:#fff;border-radius:99px;padding:1px 9px;font-size:.68rem}
+.qz .src{color:#5A6472;font-size:.7rem}
+.qz details{margin:9px 0;border-bottom:1px dashed #D8E4EE;padding-bottom:8px}
+.qz details:last-child{border-bottom:none;padding-bottom:0}
+.qz summary{cursor:pointer;list-style:none;padding:7px 11px;background:#fff;
+ border:1px solid #CBDDEA;border-radius:9px;font-size:.81rem;line-height:1.5}
+.qz summary::-webkit-details-marker{display:none}
+.qz summary:hover{background:#EAF3FA}
+.qz details[open] summary{background:#E3EFF7;border-color:#9FC3DC}
+.qz summary .qid{background:#1D6FA3;color:#fff;border-radius:99px;padding:1px 9px;font-size:.68rem}
+.qz summary .src{color:#5A6472;font-size:.7rem}
+.qz summary .tap{float:right;color:#1D6FA3;font-size:.68rem}
+.qz details[open] summary .tap{color:#5A6472}
+.qz .card{background:#fff;border:1px solid #E4DCCF;border-radius:9px;
+ padding:11px 14px;margin-top:7px}
+.qz .card ol{margin:8px 0 0;padding:0;list-style:none}
+.qz .card li{margin:5px 0;font-size:.81rem;line-height:1.55}
+.qz .card li.g{background:#E4F3EA;border-radius:6px;padding:4px 8px;
+ margin-left:-8px;font-weight:bold}
+.qz .rep{background:#E4F3EA;border-radius:7px;padding:7px 11px;margin-top:8px;font-size:.81rem}
+.qz .arq{direction:rtl;text-align:right;unicode-bidi:isolate;
+ font-family:"Segoe UI","Noto Naskh Arabic",Tahoma,sans-serif;font-size:.86rem;line-height:1.9;
+ color:#0E7C86;background:#F2FAFA;border:1px solid #CDE7E7;border-radius:8px;
+ padding:8px 12px;margin-bottom:9px}
+.qz .none{color:#5A6472;font-style:italic}
+.img{background:#FFFBF0;border:1px solid #EFD9A8;border-left:6px solid #D99A00;
+ border-radius:10px;padding:11px 15px;margin:10px 0;font-size:.85rem}
+.arx{display:none;direction:rtl;text-align:right;unicode-bidi:isolate;
+ font-family:"Segoe UI","Noto Naskh Arabic",Tahoma,sans-serif;font-size:.87rem;line-height:1.9;
+ color:var(--ar);border-bottom:1px dashed #D8CEBC;padding-bottom:7px;margin-bottom:9px}
+body.ar .arx{display:block}
+.hide{display:none}
+@media print{.bar{display:none}article{break-inside:avoid}pre{font-size:9pt}}
+@media(max-width:620px){pre{font-size:11px}}
+</style></head><body>
+<div class="wrap">
+<h1>🗂 2 — Garder ses connaissances à jour : un devoir de l'ingénieur</h1>
+<p class="sub">Guide OIQ, section 1.2 (p. 24-42) transformée en <b>14 fiches-organigrammes</b> :
+texte complet, arbre textuel, image simple, piège final, traduction arabe
+et <b>questions du recueil</b> — touche une question pour l'ouvrir
+avec toutes ses options et sa traduction arabe.</p>
+</div>
+<div class="bar"><div class="barin">
+ <button data-f="all" data-c="#26303B" style="background:#26303B;color:#fff"
+  onclick="flt(this,'all')">Tout (14)</button>
+ <button data-f="M1" data-c="#1D6FA3" style="border-color:#1D6FA3;color:#1D6FA3" onclick="flt(this,'M1')">MODULE 1 (8)</button>
+ <button data-f="M2" data-c="#7C3AED" style="border-color:#7C3AED;color:#7C3AED" onclick="flt(this,'M2')">MODULE 2 (3)</button>
+ <button data-f="M3" data-c="#0B6E4F" style="border-color:#0B6E4F;color:#0B6E4F" onclick="flt(this,'M3')">MODULE 3 (3)</button>
+
+ <input id="q" type="search" placeholder="🔎 chercher…" oninput="apply()">
+ <span id="cnt"></span>
+ <button onclick="allDet(this)">Tout révéler</button>
+ <button id="arb" onclick="arTog(this)">عربي</button>
+ <button onclick="window.print()">Imprimer</button>
+</div></div>
+<div class="wrap">
+<h2 class="grp" data-b="M1" style="border-left-color:#1D6FA3">MODULE 1 — Le Règlement sur la formation continue — 8 fiches</h2>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 1</span><span class="ti">C&#x27;est l&#x27;INGÉNIEUR qui est responsable du développement de ses compétences</span></div>
+<div class="arx" dir="rtl">القاعدة: <b>حماية الجمهور</b> وثقته تقومان على <b>الكفاءة المهنية</b> للمهندس، و<b>المهندس نفسه</b> هو المسؤول عن تطوير كفاءاته. أمّا النقابة (Ordre) فترافقه بالأدوات والدورات المناسبة. ونظام <b>التكوين المستمر الإلزامي</b> يبرّره <b>التطوّر السريع والمستمرّ</b> للكفاءات المطلوبة، وهو يتيح للنقابة تأطير تطوير الكفاءات و<b>مراقبة ممارسة المهنة</b>. ينتظر المشرّع من النقابة أن <b>تشجّع وتدعم وتراقب</b> التطوير المهني لأعضائها.</div>
+<div class="rgl"><b>La règle :</b> En matière d&#x27;ingénierie, la <b>protection et la confiance du public</b> reposent notamment sur la <b>compétence professionnelle</b> de l&#x27;ingénieur — et c&#x27;est <b>l&#x27;ingénieur</b> qui est responsable du développement de ses compétences. L&#x27;Ordre l&#x27;<b>accompagne</b> en lui proposant des outils adaptés et des formations pertinentes. Le <b>Règlement sur la formation continue obligatoire</b> se justifie par l&#x27;<b>évolution rapide et constante</b> des compétences requises ; il permet à l&#x27;Ordre d&#x27;<b>encadrer</b> le développement des compétences et de <b>contrôler l&#x27;exercice</b> de la profession. Le législateur s&#x27;attend à ce que l&#x27;Ordre s&#x27;applique à <b>promouvoir, soutenir et contrôler</b> le développement professionnel de ses membres.</div>
+<pre>QUI EST RESPONSABLE DE LA COMPÉTENCE ?
+│
+├─ PROTECTION DU PUBLIC .. repose sur la COMPÉTENCE de l&#x27;ingénieur
+│
+├─ L&#x27;INGÉNIEUR ... est RESPONSABLE de développer ses compétences
+│      --&gt; c&#x27;est lui, pas son employeur, pas l&#x27;Ordre
+│
+├─ L&#x27;ORDRE ....... l&#x27;ACCOMPAGNE (outils + formations)
+│      --&gt; il doit PROMOUVOIR · SOUTENIR · CONTRÔLER
+├─ POURQUOI un règlement ? --&gt; évolution RAPIDE et CONSTANTE
+│      des compétences requises
+│
+└─ ⚠ PIÈGE : l&#x27;Ordre encadre et contrôle, il ne se substitue
+   pas à l&#x27;ingénieur dans le choix de ses formations</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>طبيب العائلة</b>. عليه هو أن يبقى مواكباً؛ النقابة تنظّم له المؤتمرات وتتحقّق من حضوره — لكن لا أحد يتعلّم بدلاً عنه.</div>☀ <b>Image simple :</b> un <b>médecin de famille</b>. C&#x27;est lui qui doit rester à jour ; l&#x27;ordre professionnel lui offre des congrès et vérifie qu&#x27;il y va — mais personne n&#x27;apprend à sa place.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E2-2.25</span> <span class="src">Examen 2</span><span class="tap">👆 toucher pour ouvrir</span><br>L&#x27;objectif premier de la formation continue est :</summary><div class="card">
+<div class="arq">الهدف الأساسي من التكوين المستمر (formation continue) هو:</div>
+<div><b>L&#x27;objectif premier de la formation continue est :</b></div><ol>
+<li class="g"><b>A)</b> De suivre l&#x27;évolution des connaissances. ✔</li>
+<li class=""><b>B)</b> D&#x27;acquérir de nouvelles connaissances.</li>
+<li class=""><b>C)</b> D&#x27;apprendre à apprendre.</li>
+<li class=""><b>D)</b> D&#x27;acquérir de nouveaux savoir-faire.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A</b></div>
+<div class="arq" style="margin:9px 0 0">💡 التكوين المستمر يخدم أولًا الحفاظ على الكفاءة أمام تطوّر المعارف. اكتساب مهارات جديدة نتيجة، لا هدفًا أوّل.</div>
+</div></details>
+<details><summary><span class="qid">C1-14</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quels sont les rôles respectifs de l&#x27;Ordre et de l&#x27;ingénieur quant au développement de la profession ?</summary><div class="card">
+<div class="arq">ما هو الدور الذي تؤدّيه كلّ من النقابة والمهندس في تطوير المهنة؟</div>
+<div><b>Quels sont les rôles respectifs de l&#x27;Ordre et de l&#x27;ingénieur quant au développement de la profession ?</b></div><ol>
+<li class="g"><b>A)</b> Doit agir avec compétence, favoriser les mesures d&#x27;éducation et d&#x27;information et contribuer au développement de la profession → L&#x27;INGÉNIEUR ✔</li>
+<li class="g"><b>B)</b> S&#x27;applique à promouvoir, à soutenir et à contrôler le développement professionnel des ingénieurs afin d&#x27;assurer la protection du public → L&#x27;ORDRE ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الفعل يكشف الفاعل: «المراقبة» دائمًا مؤسسية (النقابة)، و«التصرّف بكفاءة» دائمًا فردي (المهندس).</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 2</span><span class="ti">Le Code de déontologie impose TROIS devoirs liés à la compétence</span></div>
+<div class="arx" dir="rtl">القاعدة: على المهندس واجب التكوين بسبب <b>صفته المهنية والاحتكار</b> الذي يتمتّع به في بعض الأنشطة. وبموجب <b>مدوّنة آداب المهنة (Code de déontologie)</b> عليه أن: <b>يتصرّف بكفاءة</b>، و<b>يشجّع تدابير التعليم والإعلام</b>، و<b>يساهم في تطوير المهنة</b>. والتصرّف بكفاءة يعني تعبئة موارده <b>الشخصية</b> والموارد <b>الخارجية</b> ومراعاة <b>سياق</b> الإنجاز.</div>
+<div class="rgl"><b>La règle :</b> L&#x27;ingénieur a une responsabilité de formation <b>due à son statut professionnel et au monopole</b> qu&#x27;il détient dans l&#x27;exercice de certaines activités professionnelles. En vertu du <b>Code de déontologie des ingénieurs</b>, il doit notamment : <b>agir avec compétence</b>, <b>favoriser les mesures d&#x27;éducation et d&#x27;information</b>, et <b>contribuer au développement de la profession</b>.</div>
+<pre>TROIS DEVOIRS DÉONTOLOGIQUES LIÉS À LA COMPÉTENCE
+│
+├─ POURQUOI ? .... statut professionnel + MONOPOLE sur certaines
+│                  activités --&gt; en contrepartie, se former
+│
+├─ 1. AGIR avec COMPÉTENCE
+├─ 2. FAVORISER les mesures d&#x27;ÉDUCATION et d&#x27;INFORMATION
+├─ 3. CONTRIBUER au DÉVELOPPEMENT DE LA PROFESSION
+│
+├─ AGIR AVEC COMPÉTENCE = mobiliser 3 ressources
+│      • PERSONNELLES (savoir, savoir-faire, savoir-être)
+│      • EXTERNES (collègues, logiciels, normes)
+│      • le CONTEXTE de réalisation
+└─ ⚠ PIÈGE : « uniquement ses ressources personnelles » est FAUX</pre>
+<div class="img"><div class="arx" dir="rtl">مثال: تصمّم غرفة غلايات ببرنامج حاسوبي ومعيار CSA ورأي زميل في الكهرباء. الكفاءة ليست أن تعرف كلّ شيء وحدك، بل أن تعبّئ الموارد المناسبة في سياقها.</div>☀ <b>Exemple :</b> tu conçois une chaufferie avec un logiciel, la norme CSA et l&#x27;avis d&#x27;un collègue en électricité. <b>Agir avec compétence</b>, ce n&#x27;est pas tout savoir seul — c&#x27;est mobiliser les bonnes ressources dans le bon contexte.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-14</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quels sont les rôles respectifs de l&#x27;Ordre et de l&#x27;ingénieur quant au développement de la profession ?</summary><div class="card">
+<div class="arq">ما هو الدور الذي تؤدّيه كلّ من النقابة والمهندس في تطوير المهنة؟</div>
+<div><b>Quels sont les rôles respectifs de l&#x27;Ordre et de l&#x27;ingénieur quant au développement de la profession ?</b></div><ol>
+<li class="g"><b>A)</b> Doit agir avec compétence, favoriser les mesures d&#x27;éducation et d&#x27;information et contribuer au développement de la profession → L&#x27;INGÉNIEUR ✔</li>
+<li class="g"><b>B)</b> S&#x27;applique à promouvoir, à soutenir et à contrôler le développement professionnel des ingénieurs afin d&#x27;assurer la protection du public → L&#x27;ORDRE ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الفعل يكشف الفاعل: «المراقبة» دائمًا مؤسسية (النقابة)، و«التصرّف بكفاءة» دائمًا فردي (المهندس).</div>
+</div></details>
+<details><summary><span class="qid">C1-15</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Pour agir avec compétence, quelles ressources l&#x27;ingénieur doit-il mobiliser pour obtenir le résultat attendu par son…</summary><div class="card">
+<div class="arq">للتصرّف بكفاءة، ما هي الموارد التي يجب على المهندس تعبئتها للحصول على النتيجة التي يتوقّعها زبونه؟</div>
+<div><b>Pour agir avec compétence, quelles ressources l&#x27;ingénieur doit-il mobiliser pour obtenir le résultat attendu par son client ?</b></div><ol>
+<li class="g"><b>A)</b> Ses ressources PERSONNELLES (connaissances, habiletés, aptitudes) ✔</li>
+<li class="g"><b>B)</b> Ses ressources EXTERNES (collègues, logiciels, documentation, normes) ✔</li>
+<li class="g"><b>C)</b> Le CONTEXTE de réalisation du travail ✔</li>
+<li class=""><b>D)</b> Uniquement ses ressources personnelles</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, B, C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الكفاءة ليست مخزونًا من المعارف بل تعبئة للموارد (الذاتية والخارجية) في سياق معيّن لتحقيق نتيجة متوقَّعة.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 3</span><span class="ti">Les DIX activités admissibles au sens du Règlement</span></div>
+<div class="arx" dir="rtl">القاعدة: يعدّد النظام <b>الأنشطة المقبولة</b>: إعداد <b>خطة التطوير المهني</b>، <b>التعلّم الذاتي</b>، دور <b>المدرّب/المحاضر</b> (يُقبل في <b>العرض الأول</b> أو بعد تعديل <b>50 %</b> من المحتوى)، <b>مجتمع الممارسة</b> و<b>اللجنة التقنية</b>، <b>الندوات</b>، <b>تأليف مقال أو كتاب</b> شرط أن يكون <b>منشوراً</b>، <b>المرافقة الفردية</b> (mentorat)، <b>الورشات</b> و<b>الدروس</b> و<b>المحاضرات</b>. وشرط مشترك: أن يكون النشاط <b>منظّماً</b> من حيث الأهداف والمحتوى وطريقة السير.</div>
+<div class="rgl"><b>La règle :</b> Le Règlement énumère les <b>activités admissibles</b> : la <b>préparation d&#x27;un plan de développement professionnel</b> (démarche réflexive en 4 étapes), l&#x27;<b>autoapprentissage</b> (seul, sans formateur ni contrôle des dates), le rôle de <b>formateur / animateur / conférencier</b> (admissible <b>la première fois</b>, ou après modification d&#x27;au moins <b>50 %</b> du contenu), la <b>communauté de pratique</b> et le <b>comité technique</b>, les <b>séminaires</b>, la <b>rédaction d&#x27;un article ou d&#x27;un ouvrage</b> — à condition qu&#x27;il soit <b>publié</b> —, la <b>démarche structurée d&#x27;accompagnement individuel</b> (mentorat, coaching, parrainage), les <b>ateliers</b>, les <b>cours</b> et les <b>conférences</b>. Toutes doivent être <b>structurées</b> en objectifs, contenu et déroulement.</div>
+<pre>LES ACTIVITÉS ADMISSIBLES
+│
+├─ PLAN de développement pro. .. démarche en 4 étapes
+├─ AUTOAPPRENTISSAGE ... seul, sans formateur, à son rythme
+├─ FORMATEUR ........... 1re présentation OU 50 % du contenu
+│                        modifié
+├─ COMMUNAUTÉ de pratique · COMITÉ technique · SÉMINAIRES
+├─ RÉDACTION ........... article ou ouvrage --&gt; s&#x27;il est PUBLIÉ
+├─ ACCOMPAGNEMENT individuel .. mentorat, coaching, parrainage
+├─ ATELIERS · COURS · CONFÉRENCES (avec période de questions)
+│
+├─ CONDITION COMMUNE ... l&#x27;activité doit être STRUCTURÉE
+└─ ⚠ PIÈGE : un article NON publié n&#x27;est pas admissible ; une
+   2e présentation du même contenu non plus</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>بطاقة الولاء</b>: ليست كلّ المشتريات تمنح نقاطاً، بل ما يتمّ عند التجّار المشاركين فقط. هنا لا تُحتسب إلاّ الأنشطة <b>المنظّمة</b> والمذكورة في النظام.</div>☀ <b>Image simple :</b> une <b>carte de fidélité</b>. Tous les achats ne donnent pas des points — seuls ceux faits <b>chez les commerçants participants</b>. Ici, seules les activités <b>structurées</b> et <b>listées au règlement</b> comptent.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-08</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue…</summary><div class="card">
+<div class="arq">من بين الأنشطة التالية، أيّها مقبول في إطار نظام التكوين المستمر الإلزامي (Règlement sur la formation continue obligatoire) لـ…</div>
+<div><b>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue obligatoire des ingénieurs ? (plusieurs réponses)</b></div><ol>
+<li class=""><b>A)</b> Présentation technique de vente</li>
+<li class="g"><b>B)</b> Cours en ligne non crédités ✔</li>
+<li class="g"><b>C)</b> Formation universitaire en ligne ouverte à tous (MOOC) ✔</li>
+<li class="g"><b>D)</b> Comité technique ✔</li>
+<li class=""><b>E)</b> Réunion de travail</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المعيار الوحيد: غاية النشاط يجب أن تكون تطوير كفاءة أو صيانتها. بيع منتج أو دفع مشروع لا يُحتسَب، ولو تعلّمنا فيه الكثير.</div>
+</div></details>
+<details><summary><span class="qid">E1-1.28</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les activités suivantes, laquelle n&#x27;est pas admissible en vertu du Règlement sur la formation continue…</summary><div class="card">
+<div class="arq">من بين الأنشطة التالية، أيّها غير مقبول بموجب نظام التكوين المستمر الإلزامي (Règlement sur la formation continue obligatoire) لـ…</div>
+<div><b>Parmi les activités suivantes, laquelle n&#x27;est pas admissible en vertu du Règlement sur la formation continue obligatoire des ingénieurs ?</b></div><ol>
+<li class=""><b>A)</b> Participation à une conférence sur les nouveaux matériaux en génie aéronautique, en réponse à la suggestion d&#x27;un employeur.</li>
+<li class=""><b>B)</b> Réalisation d&#x27;une maîtrise en gestion.</li>
+<li class="g"><b>C)</b> Participation à une présentation technique de vente expliquant les caractéristiques d&#x27;un nouvel équipement. ✔</li>
+<li class=""><b>D)</b> Préparation et présentation d&#x27;une conférence sur les meilleures pratiques de contrôle des coûts des projets informatiques.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المعيار: النشاط يجب أن يطوّر كفاءة، لا أن يبيع منتجًا. عرض تجاري من مورّد = ترويج. أمّا الماجستير والمحاضرة التقنية وحتى إعدادها فمقبولة.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 4</span><span class="ti">Deux familles d&#x27;activités NON admissibles : la vente et le travail courant</span></div>
+<div class="arx" dir="rtl">القاعدة: نوعان من الأنشطة <b>غير مقبولين</b>. <b>العرض التقني البيعي</b>: حتى لو حمل معلومات تقنية وفيرة، فغايته الأولى <b>تسويق</b> منتج أو خدمة. و<b>أنشطة العمل اليومي</b> كالاجتماعات: حتى لو كانت غنيّة بالمعرفة، فغايتها الأولى <b>إدارة المشروع أو سير العمليات</b>. المعيار الحاسم هو <b>الغاية الأولى</b> للنشاط.</div>
+<div class="rgl"><b>La règle :</b> Deux types d&#x27;activités ne sont <b>pas admissibles</b>. La <b>présentation technique de vente</b> : même si elle comporte une part appréciable d&#x27;informations techniques, elle poursuit <b>d&#x27;abord un objectif de mise en marché</b> d&#x27;un produit ou d&#x27;un service. Les <b>activités dans le cadre du travail</b>, comme les <b>réunions</b> : même riches en acquisition de connaissances, elles poursuivent <b>d&#x27;abord un objectif lié à la conduite d&#x27;un projet ou au déroulement des opérations</b>.</div>
+<pre>CE QUI N&#x27;EST PAS ADMISSIBLE --&gt; LE CRITÈRE = LA FINALITÉ
+│
+├─ PRÉSENTATION TECHNIQUE DE VENTE
+│      • contenu technique parfois riche
+│      --&gt; mais finalité = MISE EN MARCHÉ d&#x27;un produit
+│
+├─ ACTIVITÉS DANS LE CADRE DU TRAVAIL (réunions, etc.)
+│      • on y apprend souvent beaucoup
+│      --&gt; mais finalité = conduite du PROJET ou des OPÉRATIONS
+├─ LE TEST ....... vise-t-elle D&#x27;ABORD à DÉVELOPPER une
+│                  compétence ? oui = admissible
+└─ ⚠ PIÈGE : « c&#x27;était très instructif » ne rend rien
+   admissible --&gt; ce qui compte, c&#x27;est l&#x27;OBJECTIF PREMIER</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>غداء عمل</b>. قد تتعلّم فيه الكثير، لكن غايته الأولى <b>البيع</b> أو دفع ملفّ — ولا يتحوّل بذلك إلى درس طبخ.</div>☀ <b>Image simple :</b> un <b>repas d&#x27;affaires</b>. Tu y apprends peut-être plein de choses, mais son but premier est de <b>vendre</b> ou d&#x27;<b>avancer un dossier</b> — ça ne devient pas un cours de cuisine pour autant.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E1-1.28</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les activités suivantes, laquelle n&#x27;est pas admissible en vertu du Règlement sur la formation continue…</summary><div class="card">
+<div class="arq">من بين الأنشطة التالية، أيّها غير مقبول بموجب نظام التكوين المستمر الإلزامي (Règlement sur la formation continue obligatoire) لـ…</div>
+<div><b>Parmi les activités suivantes, laquelle n&#x27;est pas admissible en vertu du Règlement sur la formation continue obligatoire des ingénieurs ?</b></div><ol>
+<li class=""><b>A)</b> Participation à une conférence sur les nouveaux matériaux en génie aéronautique, en réponse à la suggestion d&#x27;un employeur.</li>
+<li class=""><b>B)</b> Réalisation d&#x27;une maîtrise en gestion.</li>
+<li class="g"><b>C)</b> Participation à une présentation technique de vente expliquant les caractéristiques d&#x27;un nouvel équipement. ✔</li>
+<li class=""><b>D)</b> Préparation et présentation d&#x27;une conférence sur les meilleures pratiques de contrôle des coûts des projets informatiques.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المعيار: النشاط يجب أن يطوّر كفاءة، لا أن يبيع منتجًا. عرض تجاري من مورّد = ترويج. أمّا الماجستير والمحاضرة التقنية وحتى إعدادها فمقبولة.</div>
+</div></details>
+<details><summary><span class="qid">C1-08</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue…</summary><div class="card">
+<div class="arq">من بين الأنشطة التالية، أيّها مقبول في إطار نظام التكوين المستمر الإلزامي (Règlement sur la formation continue obligatoire) لـ…</div>
+<div><b>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue obligatoire des ingénieurs ? (plusieurs réponses)</b></div><ol>
+<li class=""><b>A)</b> Présentation technique de vente</li>
+<li class="g"><b>B)</b> Cours en ligne non crédités ✔</li>
+<li class="g"><b>C)</b> Formation universitaire en ligne ouverte à tous (MOOC) ✔</li>
+<li class="g"><b>D)</b> Comité technique ✔</li>
+<li class=""><b>E)</b> Réunion de travail</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المعيار الوحيد: غاية النشاط يجب أن تكون تطوير كفاءة أو صيانتها. بيع منتج أو دفع مشروع لا يُحتسَب، ولو تعلّمنا فيه الكثير.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 5</span><span class="ti">SIX conditions cumulatives pour qu&#x27;une formation soit admissible</span></div>
+<div class="arx" dir="rtl">القاعدة: لكي يُقبل التكوين يجب أن تتحقّق <b>ستّ شروط</b> مجتمعة: أن يكون <b>النوع</b> معترفاً به؛ وأن يرتبط <b>المحتوى</b> بكفاءات المهنة؛ وأن يتّصل بالأنشطة المهنية <b>الحالية أو المستقبلية</b>؛ وأن يكون <b>منظّماً</b> بأهداف تعلّم ومحتوى؛ وأن تبلغ مدّته <b>30 دقيقة</b> على الأقلّ؛ وأن يكون قد <b>نجح فيه</b> أو <b>تابعه</b> إن لم يكن هناك تقييم. ويمكن أن يكون المحتوى <b>تقنياً أو غير تقني</b>: قانون، إدارة، أخلاقيات، اتصال.</div>
+<div class="rgl"><b>La règle :</b> Pour qu&#x27;une formation soit admissible, il faut s&#x27;assurer que : <b>1)</b> le <b>type</b> de formation est reconnu comme activité admissible ; <b>2)</b> le <b>contenu</b> est lié aux compétences pertinentes de la profession ; <b>3)</b> la formation est en lien avec les activités professionnelles <b>actuelles ou futures</b> du membre ; <b>4)</b> elle est <b>structurée</b> en objectifs d&#x27;apprentissage et éléments de contenu ; <b>5)</b> elle dure au <b>minimum 30 minutes</b> ; <b>6)</b> elle a été <b>réussie</b> ou, faute d&#x27;évaluation, <b>suivie</b>. Le contenu peut porter sur les aspects <b>techniques</b> ou sur d&#x27;autres aspects — <b>droit, gestion, éthique, communications</b>.</div>
+<pre>LES 6 CONDITIONS D&#x27;ADMISSIBILITÉ — TOUTES REQUISES
+│
+├─ 1. TYPE ....... reconnu comme activité admissible
+├─ 2. CONTENU .... lié aux compétences de la profession
+├─ 3. LIEN ....... avec les activités ACTUELLES **OU FUTURES**
+├─ 4. STRUCTURE .. objectifs d&#x27;apprentissage + contenu
+├─ 5. DURÉE ...... minimum 30 MINUTES
+├─ 6. RÉSULTAT ... RÉUSSIE, ou SUIVIE s&#x27;il n&#x27;y a pas d&#x27;évaluation
+│
+├─ LE CONTENU peut être TECHNIQUE **ou non** :
+│      droit · gestion · éthique · communications
+│
+└─ ⚠ PIÈGE : une formation hors technique reste admissible ;
+   et « activités futures » compte autant que « actuelles »</pre>
+<div class="img"><div class="arx" dir="rtl">مثال: دورة <b>إدارة النزاعات</b> مدّتها 45 دقيقة عبر الإنترنت مقبولة — لا يشترط أن يكون المحتوى تقنياً، بل أن يخدم ممارستك.</div>☀ <b>Exemple :</b> un cours de <b>gestion de conflits</b> de 45 minutes suivi en ligne est admissible — le contenu n&#x27;a pas à être technique, il doit servir ta pratique.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-08</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue…</summary><div class="card">
+<div class="arq">من بين الأنشطة التالية، أيّها مقبول في إطار نظام التكوين المستمر الإلزامي (Règlement sur la formation continue obligatoire) لـ…</div>
+<div><b>Parmi les activités suivantes, lesquelles sont admissibles dans le cadre du Règlement sur la formation continue obligatoire des ingénieurs ? (plusieurs réponses)</b></div><ol>
+<li class=""><b>A)</b> Présentation technique de vente</li>
+<li class="g"><b>B)</b> Cours en ligne non crédités ✔</li>
+<li class="g"><b>C)</b> Formation universitaire en ligne ouverte à tous (MOOC) ✔</li>
+<li class="g"><b>D)</b> Comité technique ✔</li>
+<li class=""><b>E)</b> Réunion de travail</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المعيار الوحيد: غاية النشاط يجب أن تكون تطوير كفاءة أو صيانتها. بيع منتج أو دفع مشروع لا يُحتسَب، ولو تعلّمنا فيه الكثير.</div>
+</div></details>
+<details><summary><span class="qid">E1-1.23</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quel énoncé décrit le mieux le cadre des obligations de formation continue des membres de l&#x27;Ordre ?</summary><div class="card">
+<div class="arq">أيّ عبارة تصف بشكل أفضل إطار التزامات التكوين المستمر (formation continue) لأعضاء النقابة؟</div>
+<div><b>Quel énoncé décrit le mieux le cadre des obligations de formation continue des membres de l&#x27;Ordre ?</b></div><ol>
+<li class=""><b>A)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement sur la formation continue obligatoire des ingénieurs, cumuler au moins 30 heures de formation continue, au cours d&#x27;une période de référence d&#x27;un an.</li>
+<li class=""><b>B)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 60 heures de formation continue, au cours d&#x27;une période de référence d&#x27;un an.</li>
+<li class="g"><b>C)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 30 heures de formation continue, au cours d&#x27;une période de référence de 2 ans. ✔</li>
+<li class=""><b>D)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 60 heures de formation continue, au cours d&#x27;une période de référence de 2 ans.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الرقم المطلوب: ٣٠ ساعة كل سنتين. المشتّتات تلعب على ٦٠ ساعة أو على مدّة سنة واحدة.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 6</span><span class="ti">30 HEURES sur 2 ANS · déclaration au 15 AVRIL · pièces gardées 2 ANS</span></div>
+<div class="arx" dir="rtl">القاعدة: على العضو أن يجمع <b>30 ساعة</b> تكوين مستمرّ على الأقلّ خلال <b>فترة مرجعية من سنتين</b>، ما لم يُعفَ (المادة 1). وعليه أن يرسل إلى النقابة <b>في موعد أقصاه 15 نيسان/أبريل</b> التالي لنهاية الفترة <b>تصريح التكوين المستمرّ</b> على النموذج المخصّص (المادة 7). وعليه <b>الاحتفاظ بالمستندات المثبتة لمدّة سنتين</b> بعد نهاية الفترة المرجعية (المادة 8). التصريح يتمّ عبر <b>بوّابة الأعضاء</b>، والمستندات تبقى في ملفّاته الشخصية.</div>
+<div class="rgl"><b>La règle :</b> « Le membre doit, à moins d&#x27;en être <b>dispensé</b>, cumuler au moins <b>30 heures</b> de formation continue au cours d&#x27;une <b>période de référence de 2 ans</b> » (<b>art. 1</b>). « L&#x27;ingénieur doit, <b>au plus tard le 15 avril</b> qui suit la fin de chaque période de référence, transmettre à l&#x27;Ordre, sur le formulaire prévu, une <b>déclaration de formation continue</b> » (<b>art. 7</b>). « L&#x27;ingénieur doit <b>conserver toutes les pièces justificatives</b> pendant <b>2 ans</b> suivant la fin de la période de référence » (<b>art. 8</b>). La déclaration se fait dans le <b>portail des membres</b> ; les pièces restent dans les <b>dossiers personnels</b> de l&#x27;ingénieur.</div>
+<pre>LES CHIFFRES DU RÈGLEMENT
+│
+├─ art. 1 .... au moins 30 HEURES par période de référence
+│              de 2 ANS --&gt; sauf dispense
+├─ art. 7 .... déclaration AU PLUS TARD LE 15 AVRIL qui suit
+│              la fin de la période --&gt; formulaire prévu
+├─ art. 8 .... conserver les PIÈCES JUSTIFICATIVES 2 ANS après
+│              la fin de la période de référence
+│
+├─ OÙ DÉCLARER ? .. le PORTAIL DES MEMBRES
+├─ OÙ GARDER ? .... ses DOSSIERS PERSONNELS
+│
+└─ ⚠ PIÈGE : ce n&#x27;est pas 30 h par AN ni 60 h par période --&gt; 
+   30 heures sur 2 ans, et le 15 avril, pas le 31 mars</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>الإقرار الضريبي</b>: حدّ أدنى، وموعد نهائي ثابت، وإيصالات تُحفَظ سنوات تحسّباً لطلبها.</div>☀ <b>Image simple :</b> ta <b>déclaration d&#x27;impôt</b>. Un montant minimum, une date limite fixe, et des reçus à garder quelques années au cas où on te les demande.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E1-1.23</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quel énoncé décrit le mieux le cadre des obligations de formation continue des membres de l&#x27;Ordre ?</summary><div class="card">
+<div class="arq">أيّ عبارة تصف بشكل أفضل إطار التزامات التكوين المستمر (formation continue) لأعضاء النقابة؟</div>
+<div><b>Quel énoncé décrit le mieux le cadre des obligations de formation continue des membres de l&#x27;Ordre ?</b></div><ol>
+<li class=""><b>A)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement sur la formation continue obligatoire des ingénieurs, cumuler au moins 30 heures de formation continue, au cours d&#x27;une période de référence d&#x27;un an.</li>
+<li class=""><b>B)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 60 heures de formation continue, au cours d&#x27;une période de référence d&#x27;un an.</li>
+<li class="g"><b>C)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 30 heures de formation continue, au cours d&#x27;une période de référence de 2 ans. ✔</li>
+<li class=""><b>D)</b> Le membre doit, à moins d&#x27;en être dispensé conformément au Règlement, cumuler au moins 60 heures de formation continue, au cours d&#x27;une période de référence de 2 ans.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الرقم المطلوب: ٣٠ ساعة كل سنتين. المشتّتات تلعب على ٦٠ ساعة أو على مدّة سنة واحدة.</div>
+</div></details>
+<details><summary><span class="qid">E1-1.20</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des…</summary><div class="card">
+<div class="arq">العضو الذي يوجد في إحدى الحالات المنصوص عليها في نظام التكوين المستمر الإلزامي للمهندسين (Règlement sur la formation continue obligatoire des ingénieurs) يمكنه…</div>
+<div><b>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des ingénieurs peut être dispensé de ses obligations de formation. Parmi les situations suivantes, laquelle n&#x27;est pas prévue au Règlement ?</b></div><ol>
+<li class=""><b>A)</b> À l&#x27;intérieur de la période de référence, il est à l&#x27;extérieur du Canada pour une période de plus de 18 mois.</li>
+<li class=""><b>B)</b> Il produit une attestation médicale justifiant qu&#x27;il se trouve, depuis plus de 6 mois, dans l&#x27;impossibilité de suivre les activités de formation continue.</li>
+<li class=""><b>C)</b> Il est inscrit à temps plein à un programme d&#x27;études universitaires.</li>
+<li class="g"><b>D)</b> Il est sans emploi. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الإعفاءات تخصّ استحالة التكوين (مرض، سفر طويل، دراسة بدوام كامل) لا انعدام الالتزام. البطالة لا تمنع من التكوين، فلا إعفاء.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 7</span><span class="ti">Le CONSEIL D&#x27;ADMINISTRATION peut imposer une formation PARTICULIÈRE</span></div>
+<div class="arx" dir="rtl">القاعدة: يمكن للنقابة أن تفرض على <b>جميع المهندسين أو بعضهم</b> متابعة نشاط تكوين أو أكثر <b>في موضوع محدّد</b>، كآداب المهنة. وبحسب <b>المادة 5</b>، <b>مجلس الإدارة</b> هو من يفرض ذلك، خاصةً بسبب <b>إصلاح تشريعي أو تنظيمي</b>، أو <b>تغيير</b>، أو <b>نقائص تمسّ ممارسة المهنة</b>. وتعترف النقابة بنجاح النشاط استناداً إلى <b>نتيجة تقييم</b> أو إلى <b>المشاركة</b> فيه.</div>
+<div class="rgl"><b>La règle :</b> L&#x27;Ordre peut imposer à <b>tous les ingénieurs ou à certains d&#x27;entre eux</b> de suivre une ou plusieurs activités de formation continue <b>sur un sujet déterminé</b>, comme la <b>déontologie</b>. Selon l&#x27;<b>article 5</b>, c&#x27;est le <b>Conseil d&#x27;administration</b> qui peut l&#x27;imposer, notamment en raison d&#x27;une <b>réforme législative ou réglementaire</b>, d&#x27;un <b>changement</b> ou de <b>lacunes affectant l&#x27;exercice</b> de la profession. L&#x27;Ordre <b>reconnaît la réussite</b> d&#x27;une activité en fonction du <b>résultat d&#x27;une évaluation</b> ou de la <b>participation</b> à cette activité, et peut exiger tout document permettant de vérifier la conformité.</div>
+<pre>LA FORMATION PARTICULIÈRE IMPOSÉE — ARTICLE 5
+│
+├─ QUI l&#x27;impose ? ... le CONSEIL D&#x27;ADMINISTRATION
+├─ À QUI ? .......... à TOUS les ingénieurs OU à CERTAINS
+├─ SUR QUOI ? ....... un sujet déterminé (ex. la déontologie)
+├─ POURQUOI ? 3 motifs
+│      • réforme LÉGISLATIVE ou RÉGLEMENTAIRE
+│      • CHANGEMENT affectant l&#x27;exercice
+│      • LACUNES affectant l&#x27;exercice
+├─ RECONNAISSANCE .. résultat d&#x27;une ÉVALUATION ou simple
+│                    PARTICIPATION à l&#x27;activité
+└─ ⚠ PIÈGE : c&#x27;est le CA, pas le syndic ni le CIP, qui impose
+   cette formation particulière</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>استدعاء سلامة للسيارات</b>: تستدعي الشركة كلّ مالكي طراز معيّن — أو دفعة محدّدة فقط — لأنّ عيباً ظهر.</div>☀ <b>Image simple :</b> un <b>rappel de sécurité automobile</b>. Le constructeur convoque tous les propriétaires d&#x27;un modèle — ou seulement ceux d&#x27;un lot précis — parce qu&#x27;un défaut est apparu.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E1-1.20</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des…</summary><div class="card">
+<div class="arq">العضو الذي يوجد في إحدى الحالات المنصوص عليها في نظام التكوين المستمر الإلزامي للمهندسين (Règlement sur la formation continue obligatoire des ingénieurs) يمكنه…</div>
+<div><b>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des ingénieurs peut être dispensé de ses obligations de formation. Parmi les situations suivantes, laquelle n&#x27;est pas prévue au Règlement ?</b></div><ol>
+<li class=""><b>A)</b> À l&#x27;intérieur de la période de référence, il est à l&#x27;extérieur du Canada pour une période de plus de 18 mois.</li>
+<li class=""><b>B)</b> Il produit une attestation médicale justifiant qu&#x27;il se trouve, depuis plus de 6 mois, dans l&#x27;impossibilité de suivre les activités de formation continue.</li>
+<li class=""><b>C)</b> Il est inscrit à temps plein à un programme d&#x27;études universitaires.</li>
+<li class="g"><b>D)</b> Il est sans emploi. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الإعفاءات تخصّ استحالة التكوين (مرض، سفر طويل، دراسة بدوام كامل) لا انعدام الالتزام. البطالة لا تمنع من التكوين، فلا إعفاء.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M1" style="border-left-color:#1D6FA3">
+<div class="hd"><span class="no" style="background:#1D6FA3">fiche 8</span><span class="ti">En cas de DÉFAUT : avis, 90 JOURS pour corriger, puis RADIATION ou LIMITATION</span></div>
+<div class="arx" dir="rtl">القاعدة: قبل الشطب أو التقييد، ترسل النقابة <b>إشعاراً</b> يبيّن <b>طبيعة التقصير</b> ويمنح مهلة <b>90 يوماً من تاريخ الاستلام</b> لتصحيح الوضع. وبموجب <b>المادة 16</b>، يُشطب المهندس من الجدول إن لم يصحّح؛ أمّا إذا كان التقصير في تكوين <b>مفروض بسبب طبيعة أنشطته</b> فيُقيَّد <b>حقّه في الممارسة</b>. وتبقى العقوبة سارية حتى يقدّم إثبات التصحيح ويرفعها <b>مجلس الإدارة</b>. وإذا رفضت النقابة الاعتراف بنشاط مصرّح به، يمكنه طلب <b>المراجعة خلال 15 يوماً</b> (المادة 10).</div>
+<div class="rgl"><b>La règle :</b> Avant de prononcer la radiation ou la limitation, l&#x27;Ordre transmet un <b>AVIS</b> à l&#x27;ingénieur en défaut : cet avis indique la <b>nature du défaut</b> et l&#x27;informe qu&#x27;il dispose d&#x27;un délai de <b>90 jours à compter de sa réception</b> pour remédier à la situation. En vertu de l&#x27;<b>article 16</b>, l&#x27;ingénieur sera <b>radié du tableau</b> s&#x27;il ne remédie pas à son défaut dans les délais ; s&#x27;il s&#x27;agit d&#x27;une formation <b>imposée en raison de la nature des activités qu&#x27;il exerce</b>, c&#x27;est son <b>droit d&#x27;exercice qui sera limité</b>. La sanction <b>demeure en vigueur</b> jusqu&#x27;à ce qu&#x27;il fournisse la preuve d&#x27;avoir remédié à son défaut et que la sanction soit <b>levée par le Conseil d&#x27;administration</b>. En cas de <b>refus de reconnaître</b> une activité déclarée, l&#x27;ingénieur peut en demander la <b>révision dans les 15 jours</b> (art. 10).</div>
+<pre>LE PARCOURS DU DÉFAUT DE FORMATION CONTINUE
+│
+├─ 1. AVIS de l&#x27;Ordre .. nature du défaut + 90 JOURS à
+│                        compter de la RÉCEPTION
+├─ 2. PAS DE CORRECTION --&gt; art. 16
+│      ├─ défaut d&#x27;heures ......... RADIATION du tableau
+│      └─ formation IMPOSÉE non suivie .. LIMITATION du
+│         droit d&#x27;exercice
+├─ 3. LEVÉE ... preuve d&#x27;avoir remédié + décision du CONSEIL
+│               D&#x27;ADMINISTRATION --&gt; sinon la sanction demeure
+├─ RECOURS .... refus de reconnaître une activité déclarée
+│               --&gt; demander la RÉVISION dans les 15 JOURS
+└─ ⚠ PIÈGE : 90 jours pour corriger, 15 jours pour contester
+   --&gt; ne pas confondre les deux délais</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>إنذار رسمي</b>: يُقال لك ما الخلل، ولديك مهلة محدّدة للتصحيح؛ وبعدها تقع العقوبة، ولا تُرفع تلقائياً بل بإثبات التصحيح.</div>☀ <b>Image simple :</b> une <b>mise en demeure</b>. On te dit ce qui cloche, tu as un délai précis pour régulariser ; passé ce délai la sanction tombe, et elle ne se lève pas toute seule — il faut prouver que c&#x27;est corrigé.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E1-1.35</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>À quelle sanction s&#x27;expose le membre qui ne respecte pas ses obligations de formation continue selon le Règlement sur…</summary><div class="card">
+<div class="arq">ما هي العقوبة التي يتعرّض لها العضو الذي لا يحترم التزاماته في التكوين المستمر بموجب النظام المتعلّق بـ…</div>
+<div><b>À quelle sanction s&#x27;expose le membre qui ne respecte pas ses obligations de formation continue selon le Règlement sur la formation continue obligatoire des ingénieurs ?</b></div><ol>
+<li class=""><b>A)</b> Amende.</li>
+<li class=""><b>B)</b> Limitation du permis de pratique.</li>
+<li class=""><b>C)</b> Réprimande.</li>
+<li class="g"><b>D)</b> Radiation. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 العقوبة إدارية لا تأديبية: يُشطب المهندس من الجدول حتى يصحّح وضعه، ومجلس الإدارة هو من يرفع العقوبة. لا غرامة ولا توبيخ.</div>
+</div></details>
+<details><summary><span class="qid">E1-1.20</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des…</summary><div class="card">
+<div class="arq">العضو الذي يوجد في إحدى الحالات المنصوص عليها في نظام التكوين المستمر الإلزامي للمهندسين (Règlement sur la formation continue obligatoire des ingénieurs) يمكنه…</div>
+<div><b>Le membre qui se trouve dans l&#x27;une des situations prévues au Règlement sur la formation continue obligatoire des ingénieurs peut être dispensé de ses obligations de formation. Parmi les situations suivantes, laquelle n&#x27;est pas prévue au Règlement ?</b></div><ol>
+<li class=""><b>A)</b> À l&#x27;intérieur de la période de référence, il est à l&#x27;extérieur du Canada pour une période de plus de 18 mois.</li>
+<li class=""><b>B)</b> Il produit une attestation médicale justifiant qu&#x27;il se trouve, depuis plus de 6 mois, dans l&#x27;impossibilité de suivre les activités de formation continue.</li>
+<li class=""><b>C)</b> Il est inscrit à temps plein à un programme d&#x27;études universitaires.</li>
+<li class="g"><b>D)</b> Il est sans emploi. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الإعفاءات تخصّ استحالة التكوين (مرض، سفر طويل، دراسة بدوام كامل) لا انعدام الالتزام. البطالة لا تمنع من التكوين، فلا إعفاء.</div>
+</div></details>
+</div>
+</article>
+<h2 class="grp" data-b="M2" style="border-left-color:#7C3AED">MODULE 2 — Les compétences professionnelles — 3 fiches</h2>
+<article data-b="M2" style="border-left-color:#7C3AED">
+<div class="hd"><span class="no" style="background:#7C3AED">fiche 9</span><span class="ti">La COMPÉTENCE = SAVOIR + SAVOIR-FAIRE + SAVOIR-ÊTRE</span></div>
+<div class="arx" dir="rtl">القاعدة: <b>الكفاءة المهنية</b> هي إنجاز الأعمال المهنية <b>وفق المتطلّبات السارية</b>، وتتجلّى في ثلاثة مكوّنات: <b>المعارف</b> (savoir)، و<b>المهارات</b> (savoir-faire)، و<b>السلوكيات</b> (savoir-être). ولكي يتصرّف بكفاءة يعبّئ المهندس موارده <b>الشخصية</b> و<b>الخارجية</b> ويراعي <b>سياق</b> الإنجاز. والكفاءة تُثبَت بأفعال ملموسة لا بانطباع ذاتي.</div>
+<div class="rgl"><b>La règle :</b> La <b>compétence professionnelle</b> consiste à <b>accomplir les actes professionnels conformément aux exigences en vigueur</b>. Elle se traduit par trois composantes : les <b>connaissances</b> (le <b>savoir</b>), les <b>habiletés</b> (le <b>savoir-faire</b>) et les <b>aptitudes</b> (le <b>savoir-être</b>). Pour agir avec compétence, l&#x27;ingénieur mobilise ses ressources <b>personnelles</b>, ses ressources <b>externes</b> (collègues, logiciels, documentation, normes) et tient compte du <b>contexte de réalisation</b>. Une compétence se démontre par des <b>actions concrètes</b>, jamais par une auto-perception du type « je fais preuve de rigueur ».</div>
+<pre>LA COMPÉTENCE PROFESSIONNELLE
+│
+├─ DÉFINITION .. accomplir les actes professionnels CONFORMÉMENT
+│                aux exigences en vigueur
+│
+├─ 3 COMPOSANTES
+│      ├─ CONNAISSANCES .. le SAVOIR
+│      ├─ HABILETÉS ...... le SAVOIR-FAIRE
+│      └─ APTITUDES ...... le SAVOIR-ÊTRE
+├─ POUR AGIR avec compétence --&gt; mobiliser les ressources
+│      PERSONNELLES + EXTERNES + le CONTEXTE
+└─ ⚠ PIÈGE : « je fais preuve de rigueur » est une PERCEPTION ;
+   une compétence se démontre : « j&#x27;ai établi le budget »</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>رخصة السَّوق</b>: معرفة القانون (المعرفة)، وقيادة السيارة (المهارة)، والهدوء في الزحمة (السلوك). الثلاثة معاً.</div>☀ <b>Image simple :</b> un <b>permis de conduire</b>. Connaître le Code (savoir), manœuvrer la voiture (savoir-faire), rester calme dans le trafic (savoir-être). Les trois, sinon tu n&#x27;es pas un bon conducteur.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-15</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Pour agir avec compétence, quelles ressources l&#x27;ingénieur doit-il mobiliser pour obtenir le résultat attendu par son…</summary><div class="card">
+<div class="arq">للتصرّف بكفاءة، ما هي الموارد التي يجب على المهندس تعبئتها للحصول على النتيجة التي يتوقّعها زبونه؟</div>
+<div><b>Pour agir avec compétence, quelles ressources l&#x27;ingénieur doit-il mobiliser pour obtenir le résultat attendu par son client ?</b></div><ol>
+<li class="g"><b>A)</b> Ses ressources PERSONNELLES (connaissances, habiletés, aptitudes) ✔</li>
+<li class="g"><b>B)</b> Ses ressources EXTERNES (collègues, logiciels, documentation, normes) ✔</li>
+<li class="g"><b>C)</b> Le CONTEXTE de réalisation du travail ✔</li>
+<li class=""><b>D)</b> Uniquement ses ressources personnelles</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, B, C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الكفاءة ليست مخزونًا من المعارف بل تعبئة للموارد (الذاتية والخارجية) في سياق معيّن لتحقيق نتيجة متوقَّعة.</div>
+</div></details>
+<details><summary><span class="qid">C1-16</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les énoncés suivants, lesquels sont des exemples CONCRETS et REPRÉSENTATIFS d&#x27;une compétence (par opposition à…</summary><div class="card">
+<div class="arq">من بين العبارات التالية، أيّها أمثلة ملموسة وممثِّلة لكفاءة (بخلاف…</div>
+<div><b>Parmi les énoncés suivants, lesquels sont des exemples CONCRETS et REPRÉSENTATIFS d&#x27;une compétence (par opposition à une perception) ?</b></div><ol>
+<li class=""><b>A)</b> Je fais preuve de rigueur dans la gestion du projet !</li>
+<li class="g"><b>B)</b> J&#x27;ai établi le budget pour chacune des solutions. ✔</li>
+<li class="g"><b>C)</b> J&#x27;ai contribué au rapport d&#x27;analyse qui tient compte de la sécurité des données. ✔</li>
+<li class="g"><b>D)</b> J&#x27;ai calculé le retour sur investissement. ✔</li>
+<li class="g"><b>E)</b> J&#x27;ai choisi la meilleure option avec mon superviseur. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B, C, D, E</b></div>
+<div class="arq" style="margin:9px 0 0">💡 اختبار بسيط: المثال الملموس يصف فعلًا أُنجِز بفعل ماضٍ ومُخرَج قابل للتحقّق. أمّا وصف الذات بصفة فهو انطباع دائمًا.</div>
+</div></details>
+<details><summary><span class="qid">E3-55</span> <span class="src">Examen 3</span><span class="tap">👆 toucher pour ouvrir</span><br>L&#x27;ingénieur a de plus en plus besoin de suivre une formation élargie, c&#x27;est-à-dire une formation qui va au-delà des…</summary><div class="card">
+<div class="arq">يحتاج المهندس أكثر فأكثر إلى متابعة تكوين موسّع، أي تكوين يتجاوز العلوم…</div>
+<div><b>L&#x27;ingénieur a de plus en plus besoin de suivre une formation élargie, c&#x27;est-à-dire une formation qui va au-delà des sciences exactes et de la technologie. En développant ses compétences dans certains domaines qui n&#x27;ont rien en commun avec les sciences exactes et la technologie (relations humaines, droit, etc.), l&#x27;ingénieur...</b></div><ol>
+<li class=""><b>A)</b> peut aborder des problèmes beaucoup plus vastes et les résoudre d&#x27;une façon beaucoup plus rapide.</li>
+<li class=""><b>B)</b> peut réduire les coûts que son client devra assumer, car moins de personnes auront à intervenir dans le projet.</li>
+<li class="g"><b>C)</b> peut plus facilement comprendre l&#x27;apport des personnes de formations diverses qui doivent intervenir dans le projet, et interagir avec celles-ci d&#x27;une façon beaucoup plus efficace. ✔</li>
+<li class=""><b>D)</b> peut plus facilement influencer les intervenants qui travaillent dans des domaines autres que les sciences et la technologie.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 فائدة التكوين الموسّع علائقية لا تقنية: تمكّن من فهم المحامين والماليّين والتواصل معهم. الخيارات التي تَعِد بالسرعة أو بخفض التكلفة اختصارات مضلِّلة.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M2" style="border-left-color:#7C3AED">
+<div class="hd"><span class="no" style="background:#7C3AED">fiche 10</span><span class="ti">Le CADRE DE RÉFÉRENCE : 10 champs = 4 TRANSVERSAUX + 6 TECHNIQUES</span></div>
+<div class="arx" dir="rtl">القاعدة: يتكوّن <b>الإطار المرجعي</b> للنقابة من <b>عشرة مجالات كفاءة</b>: <b>4 مجالات عرضانية</b> و<b>6 مجالات تقنية</b> منظّمة وفق <b>دورة حياة المشروع الهندسي</b>. ويضمّ كلّ مجال مجموعة <b>كفاءات</b> تتفرّع إلى <b>عناصر</b>. أمّا <b>دليل تطوير الكفاءات</b> فيساعد العضو على <b>التخطيط</b> و<b>متابعة خطّته</b> و<b>تقييم</b> ما أنجزه.</div>
+<div class="rgl"><b>La règle :</b> Le <b>cadre de référence</b> de l&#x27;Ordre est constitué de <b>dix (10) champs de compétences</b> : <b>4 champs de compétences transversales</b> et <b>6 champs de compétences plus techniques</b>, ces derniers <b>organisés selon le cycle de vie du projet d&#x27;ingénierie</b>. Chaque champ regroupe un ensemble de <b>compétences</b>, elles-mêmes décomposées en plusieurs <b>éléments</b>. Le <b>Guide de développement des compétences</b> aide le membre à <b>planifier</b> le développement de ses compétences, à <b>suivre son plan</b> et à <b>faire le bilan</b> des progrès réalisés.</div>
+<pre>LE CADRE DE RÉFÉRENCE DES COMPÉTENCES
+│
+├─ 10 CHAMPS DE COMPÉTENCES
+│      ├─ 4 champs TRANSVERSAUX
+│      └─ 6 champs TECHNIQUES --&gt; organisés selon le CYCLE DE VIE
+│         du projet d&#x27;ingénierie
+│
+├─ EMBOÎTEMENT .. CHAMP --&gt; COMPÉTENCES --&gt; ÉLÉMENTS
+│
+├─ LE GUIDE de développement des compétences
+│      --&gt; aide à PLANIFIER · SUIVRE son plan · FAIRE LE BILAN
+│
+└─ ⚠ PIÈGE : le Guide n&#x27;impose AUCUNE norme d&#x27;heures et ne dit
+   PAS quelles formations suivre --&gt; il AIDE, il n&#x27;oblige pas</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>قائمة طعام في مطعم</b>: تصنّف الأطباق وتصفها، لكنها لا تقول لك ماذا تطلب ولا كم تأكل.</div>☀ <b>Image simple :</b> un <b>menu de restaurant</b>. Il classe les plats par sections et te décrit chaque plat — mais il ne te dit pas quoi commander ni combien manger.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">E3-54</span> <span class="src">Examen 3</span><span class="tap">👆 toucher pour ouvrir</span><br>Le Guide de développement des compétences de l&#x27;ingénieur :</summary><div class="card">
+<div class="arq">دليل تطوير كفاءات المهندس (Guide de développement des compétences de l&#x27;ingénieur):</div>
+<div><b>Le Guide de développement des compétences de l&#x27;ingénieur :</b></div><ol>
+<li class=""><b>A)</b> présente des normes concernant l&#x27;ampleur des activités de perfectionnement auxquelles les membres doivent participer annuellement.</li>
+<li class=""><b>B)</b> précise les compétences exigées des personnes qui comptent soumettre une demande de permis.</li>
+<li class=""><b>C)</b> stipule à quelles activités de formation continue les membres doivent participer compte tenu de leur domaine d&#x27;études de premier cycle en génie.</li>
+<li class="g"><b>D)</b> aide le membre à planifier le développement de ses compétences, à suivre son plan et à faire le bilan des progrès réalisés. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 دليل تطوير الكفاءات هو أداة تخطيط شخصية: حصيلة، خطّة، متابعة. لا يفرض عدد ساعات (هذا دور الـ règlement) ولا قائمة تكوينات إلزامية.</div>
+</div></details>
+<details><summary><span class="qid">C1-16</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Parmi les énoncés suivants, lesquels sont des exemples CONCRETS et REPRÉSENTATIFS d&#x27;une compétence (par opposition à…</summary><div class="card">
+<div class="arq">من بين العبارات التالية، أيّها أمثلة ملموسة وممثِّلة لكفاءة (بخلاف…</div>
+<div><b>Parmi les énoncés suivants, lesquels sont des exemples CONCRETS et REPRÉSENTATIFS d&#x27;une compétence (par opposition à une perception) ?</b></div><ol>
+<li class=""><b>A)</b> Je fais preuve de rigueur dans la gestion du projet !</li>
+<li class="g"><b>B)</b> J&#x27;ai établi le budget pour chacune des solutions. ✔</li>
+<li class="g"><b>C)</b> J&#x27;ai contribué au rapport d&#x27;analyse qui tient compte de la sécurité des données. ✔</li>
+<li class="g"><b>D)</b> J&#x27;ai calculé le retour sur investissement. ✔</li>
+<li class="g"><b>E)</b> J&#x27;ai choisi la meilleure option avec mon superviseur. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B, C, D, E</b></div>
+<div class="arq" style="margin:9px 0 0">💡 اختبار بسيط: المثال الملموس يصف فعلًا أُنجِز بفعل ماضٍ ومُخرَج قابل للتحقّق. أمّا وصف الذات بصفة فهو انطباع دائمًا.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M2" style="border-left-color:#7C3AED">
+<div class="hd"><span class="no" style="background:#7C3AED">fiche 11</span><span class="ti">Les PROFILS DE COMPÉTENCES visent les domaines À RISQUE, pas les plus populaires</span></div>
+<div class="arx" dir="rtl">القاعدة: لبعض <b>مجالات الممارسة المعتبرة عالية المخاطر</b>، وُضعت <b>ملفّات كفاءات خاصة</b> بحسب الإطار المرجعي، تقدّم للمهندس <b>قائمة كفاءات مفصّلة وخاصة بمجاله</b>، وتتيح له تقييم نفسه بسؤالين: هل <b>أعمالي الهندسية مطابقة</b>؟ وهل <b>ممارستي المهنية ملائمة</b>؟ وتطوّرها النقابة <b>حسب الحاجة</b>، وتفاصيلها في <b>دليل الممارسة المهنية</b>.</div>
+<div class="rgl"><b>La règle :</b> Pour certains <b>domaines de pratique jugés à risque</b>, des <b>profils de compétences spécifiques</b> ont été développés selon le cadre de référence. Ils offrent à l&#x27;ingénieur concerné une <b>liste de compétences détaillées et spécifiques à son domaine</b> et lui permettent de s&#x27;évaluer en se posant deux questions : « <b>Mes actes d&#x27;ingénierie sont-ils conformes ?</b> » et « <b>Ma pratique professionnelle est-elle adéquate ?</b> ». L&#x27;Ordre développe ces profils <b>selon les besoins</b> ; le détail se consulte dans le <b>Guide de pratique professionnelle de l&#x27;ingénieur</b>.</div>
+<pre>LES PROFILS DE COMPÉTENCES
+│
+├─ POUR QUI ? .... les domaines de pratique jugés À RISQUE
+│                  --&gt; PAS les domaines les plus populaires
+├─ CE QUE C&#x27;EST .. liste de compétences DÉTAILLÉES et
+│                  SPÉCIFIQUES au domaine
+├─ À QUOI ÇA SERT ? --&gt; s&#x27;AUTOÉVALUER avec 2 questions
+│      • Mes actes d&#x27;ingénierie sont-ils CONFORMES ?
+│      • Ma pratique professionnelle est-elle ADÉQUATE ?
+├─ OÙ LES TROUVER ? .. Guide de pratique professionnelle
+│
+└─ ⚠ PIÈGE : « domaines les plus POPULAIRES » --&gt; FAUX,
+   c&#x27;est « à RISQUE »</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>الفحص المشدّد</b> لحافلات المدارس وصهاريج الوقود: لا تُشدَّد الرقابة على الأكثر مبيعاً، بل على ما يسبّب عطبه أكبر ضرر.</div>☀ <b>Image simple :</b> les <b>inspections plus poussées</b> pour les autobus scolaires et les camions-citernes. On ne renforce pas le contrôle sur les véhicules les plus vendus, mais sur ceux dont une défaillance ferait le plus de dégâts.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-10</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Des profils de compétences ont été élaborés pour les domaines les plus POPULAIRES de la pratique professionnelle. Vrai…</summary><div class="card">
+<div class="arq">تمّ إعداد ملفّات الكفاءات (profils de compétences) للمجالات الأكثر شيوعًا في الممارسة المهنية. صحيح أم خطأ؟</div>
+<div><b>Des profils de compétences ont été élaborés pour les domaines les plus POPULAIRES de la pratique professionnelle. Vrai ou faux ?</b></div><ol>
+<li class=""><b>A)</b> Vrai</li>
+<li class="g"><b>B)</b> Faux ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 كلمة الفخّ: «الأكثر شيوعًا» بدل «الأكثر خطورة». منطق النقابة كلّه حماية الجمهور، فالاستهداف يكون حسب الخطر.</div>
+</div></details>
+<details><summary><span class="qid">E3-54</span> <span class="src">Examen 3</span><span class="tap">👆 toucher pour ouvrir</span><br>Le Guide de développement des compétences de l&#x27;ingénieur :</summary><div class="card">
+<div class="arq">دليل تطوير كفاءات المهندس (Guide de développement des compétences de l&#x27;ingénieur):</div>
+<div><b>Le Guide de développement des compétences de l&#x27;ingénieur :</b></div><ol>
+<li class=""><b>A)</b> présente des normes concernant l&#x27;ampleur des activités de perfectionnement auxquelles les membres doivent participer annuellement.</li>
+<li class=""><b>B)</b> précise les compétences exigées des personnes qui comptent soumettre une demande de permis.</li>
+<li class=""><b>C)</b> stipule à quelles activités de formation continue les membres doivent participer compte tenu de leur domaine d&#x27;études de premier cycle en génie.</li>
+<li class="g"><b>D)</b> aide le membre à planifier le développement de ses compétences, à suivre son plan et à faire le bilan des progrès réalisés. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 دليل تطوير الكفاءات هو أداة تخطيط شخصية: حصيلة، خطّة، متابعة. لا يفرض عدد ساعات (هذا دور الـ règlement) ولا قائمة تكوينات إلزامية.</div>
+</div></details>
+</div>
+</article>
+<h2 class="grp" data-b="M3" style="border-left-color:#0B6E4F">MODULE 3 — Le cycle annuel de développement — 3 fiches</h2>
+<article data-b="M3" style="border-left-color:#0B6E4F">
+<div class="hd"><span class="no" style="background:#0B6E4F">fiche 12</span><span class="ti">Le cycle annuel a TROIS étapes : PLANIFIER, SUIVRE, faire le BILAN</span></div>
+<div class="arx" dir="rtl">القاعدة: على المهندس كلّ سنة أن <b>يخطّط</b> لتطوير كفاءاته، و<b>يتابع خطّته</b>، و<b>يقيّم</b> ما أنجزه. فالمسار من <b>ثلاث مراحل</b>: التخطيط، ثمّ المتابعة، ثمّ <b>الحصيلة</b>. و<b>المهندس</b> هو من يقود هذا المسار: حتى لو كان صاحب العمل مهتمّاً بالتكوين، فعليه هو أن <b>يقيّم وضعه الحالي</b> و<b>يحدّد أهدافه السنوية</b> و<b>يخطّط أنشطته</b>.</div>
+<div class="rgl"><b>La règle :</b> Chaque année, l&#x27;ingénieur doit <b>planifier</b> le développement de ses compétences, <b>suivre son plan</b> et <b>faire un bilan</b> des progrès réalisés. Le processus comprend donc <b>trois étapes</b> : <b>1) planifier</b> le développement de ses compétences, <b>2) effectuer le suivi</b> de son plan, <b>3) faire le bilan</b> de ses activités. C&#x27;est <b>l&#x27;ingénieur</b> qui mène cette démarche — même lorsque l&#x27;employeur valorise la formation, il lui revient d&#x27;<b>évaluer sa situation actuelle</b>, d&#x27;<b>établir ses objectifs annuels</b> et de <b>planifier ses activités</b>.</div>
+<pre>LE CYCLE ANNUEL EN TROIS ÉTAPES
+│
+├─ 1. PLANIFIER .. évaluer la situation actuelle
+│                  --&gt; établir les objectifs annuels
+│                  --&gt; planifier les activités
+│
+├─ 2. SUIVRE ..... noter dates et heures de chaque activité
+│                  --&gt; conserver les pièces justificatives
+│                  --&gt; déclarer au dossier de l&#x27;Ordre
+│
+├─ 3. BILAN ...... impact sur la pratique + sur les prochains
+│                  objectifs --&gt; étape SOUVENT NÉGLIGÉE
+└─ ⚠ PIÈGE : ni l&#x27;employeur ni le patron ne mène la démarche
+   --&gt; c&#x27;est l&#x27;ingénieur qui évalue, fixe et planifie</pre>
+<div class="img"><div class="arx" dir="rtl">مثال بسيط: <b>برنامج تمارين رياضية</b>: تقيّم لياقتك، وتحدّد هدفاً، وتسجّل كلّ حصّة — وفي النهاية ترى إن كنت فعلاً تركض أسرع.</div>☀ <b>Image simple :</b> un <b>programme d&#x27;entraînement</b>. Tu évalues ta forme, tu te fixes un objectif, tu notes chaque séance — et à la fin tu regardes si tu cours vraiment plus vite.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-12</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Steven note l&#x27;activité de formation réalisée, la date et le nombre d&#x27;heures, et la déclare à son dossier de formation…</summary><div class="card">
+<div class="arq">يسجّل ستيفن نشاط التكوين الذي أنجزه، والتاريخ، وعدد الساعات، ويعلن عنه في ملفّه الخاص بالتكوين المستمر (formation continue)…</div>
+<div><b>Steven note l&#x27;activité de formation réalisée, la date et le nombre d&#x27;heures, et la déclare à son dossier de formation continue. À quelle étape du processus cette situation fait-elle référence ?</b></div><ol>
+<li class=""><b>A)</b> Planifier le développement de ses compétences</li>
+<li class="g"><b>B)</b> Effectuer le suivi de son plan ✔</li>
+<li class=""><b>C)</b> Faire le bilan de ses activités</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المراحل الثلاث: التخطيط ← المتابعة (التسجيل والتصريح) ← الحصيلة (قياس الأثر). التدوين والتصريح = متابعة.</div>
+</div></details>
+<details><summary><span class="qid">E1-2.14</span> <span class="src">Examen 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Marc-André, ing. jr, travaille pour une compagnie où la formation continue revêt une importance capitale dans le…</summary><div class="card">
+<div class="arq">ماركو-أندريه، مهندس مبتدئ (ing. jr)، يعمل لدى شركة تُولي فيها التكوين المستمر أهمية بالغة في تطوير…</div>
+<div><b>Marc-André, ing. jr, travaille pour une compagnie où la formation continue revêt une importance capitale dans le développement de carrière de ses employés. Dans le cadre du développement de ses compétences et dans le but de mieux cibler et planifier ses objectifs, comment Marc-André devrait-il agir ?</b></div><ol>
+<li class=""><b>A)</b> Marc-André n&#x27;a rien à faire de spécial, puisque l&#x27;employeur sera en mesure de mieux évaluer ses besoins.</li>
+<li class="g"><b>B)</b> Marc-André devra évaluer sa situation actuelle, établir ses objectifs annuels et planifier ses activités. ✔</li>
+<li class=""><b>C)</b> Demander à son patron quelles formations il devrait suivre et les faire approuver par l&#x27;Ordre par la suite.</li>
+<li class=""><b>D)</b> Faire le bilan des activités de formation déjà suivies, assurer une continuité à ses formations passées et obtenir l&#x27;approbation de l&#x27;Ordre.</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المنهجية دائمًا في ٣ خطوات: تقييم الوضع الحالي ← تحديد الأهداف ← تخطيط الأنشطة. المهندس هو من يقود تطوّره، لا صاحب العمل ولا النقابة.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M3" style="border-left-color:#0B6E4F">
+<div class="hd"><span class="no" style="background:#0B6E4F">fiche 13</span><span class="ti">Un OBJECTIF de développement a TROIS éléments et doit être SMART</span></div>
+<div class="arx" dir="rtl">القاعدة: بعد تقييم وضعه، يرتّب المهندس كفاءاته حسب <b>الأولوية</b> ويختار <b>كفاءتين إلى ثلاث</b> لكلّ فترة مرجعية. ويتكوّن <b>هدف التطوير</b> من <b>ثلاثة عناصر</b>: <b>المعرفة المطلوبة</b>، و<b>مستوى المهارة</b> المرتبط بها، و<b>شروط التطبيق</b>. وينبغي أن يكون كلّ هدف <b>SMART</b>: محدّداً، قابلاً للقياس، قابلاً للتحقيق، واقعياً، ومحدّداً زمنياً. أمّا <b>الوسائل الثلاث</b> للتطوير فهي <b>خبرة العمل</b> (وهي المفضّلة)، و<b>اكتساب المعارف</b>، و<b>التغذية الراجعة</b>.</div>
+<div class="rgl"><b>La règle :</b> Après avoir évalué sa situation, l&#x27;ingénieur <b>classe ses compétences par priorité</b> et retient <b>deux à trois compétences à développer</b> par période de référence. Un <b>objectif de développement</b> se compose de <b>trois éléments</b> : la <b>connaissance requise</b>, le <b>niveau d&#x27;habileté</b> qui s&#x27;y rapporte et les <b>conditions d&#x27;application</b> de la compétence. Chaque objectif doit être <b>SMART</b> : <b>S</b>pécifique, <b>M</b>esurable, <b>A</b>tteignable, <b>R</b>éaliste, <b>T</b>emporellement défini. Les <b>trois moyens</b> de développement sont l&#x27;<b>expérience de travail</b> — le moyen <b>à privilégier</b> —, l&#x27;<b>acquisition de connaissances</b> et la <b>rétroaction</b>.</div>
+<pre>CONSTRUIRE UN OBJECTIF DE DÉVELOPPEMENT
+│
+├─ PRIORISER .... 2 à 3 compétences par période de référence
+│                 --&gt; priorité à l&#x27;emploi actuel et la carrière
+├─ 3 ÉLÉMENTS d&#x27;un objectif
+│      ├─ la CONNAISSANCE requise
+│      ├─ le NIVEAU D&#x27;HABILETÉ qui s&#x27;y rapporte
+│      └─ les CONDITIONS D&#x27;APPLICATION
+├─ SMART ........ Spécifique · Mesurable · Atteignable ·
+│                 Réaliste · Temporellement défini
+├─ 3 MOYENS ..... EXPÉRIENCE DE TRAVAIL (à privilégier) ·
+│                 ACQUISITION DE CONNAISSANCES · RÉTROACTION
+└─ ⚠ PIÈGE : la « réunion de travail » n&#x27;est PAS un moyen de
+   développement des compétences</pre>
+<div class="img"><div class="arx" dir="rtl">مثال: «قبل كانون الأول: إتقان تحجيم شبكة تهوئة وفق المعيار س (معرفة)، باستقلالية في مشروع فعلي (مهارة)، لمبانٍ دون ثلاثة طوابق (شرط)». هذا هدف SMART مكتمل.</div>☀ <b>Exemple :</b> « D&#x27;ici décembre, savoir dimensionner un réseau de ventilation selon la norme X (connaissance), en autonomie sur un projet réel (habileté), pour des bâtiments de moins de 3 étages (condition). » Voilà un objectif SMART complet.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-11</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Associez chaque élément composant un objectif à l&#x27;énoncé correspondant (niveau d&#x27;habileté, connaissance requise,…</summary><div class="card">
+<div class="arq">اربط كل عنصر مكوّن للهدف بالعبارة المقابلة له (مستوى المهارة، المعرفة المطلوبة، الشرط…</div>
+<div><b>Associez chaque élément composant un objectif à l&#x27;énoncé correspondant (niveau d&#x27;habileté, connaissance requise, condition d&#x27;application).</b></div><ol>
+<li class="g"><b>A)</b> Accroître la portée de mes recommandations en fonction de ma responsabilité professionnelle → NIVEAU D&#x27;HABILETÉ ✔</li>
+<li class="g"><b>B)</b> Être au fait des limites de ma responsabilité et acquérir des techniques d&#x27;influence → CONNAISSANCE REQUISE ✔</li>
+<li class="g"><b>C)</b> Apprendre de manière autonome → CONDITION D&#x27;APPLICATION ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, B, C</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الهدف التطويري الجيّد يتألّف من ثلاثة عناصر: المستوى المنشود، المعرفة اللازمة، وشروط التطبيق.</div>
+</div></details>
+<details><summary><span class="qid">C1-13</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quels sont les 3 moyens de développement des compétences ?</summary><div class="card">
+<div class="arq">ما هي الوسائل الثلاث لتطوير الكفاءات (compétences)؟</div>
+<div><b>Quels sont les 3 moyens de développement des compétences ?</b></div><ol>
+<li class="g"><b>A)</b> Expérience de travail ✔</li>
+<li class=""><b>B)</b> Réunion de travail</li>
+<li class="g"><b>C)</b> Rétroaction ✔</li>
+<li class="g"><b>D)</b> Acquisition de connaissances ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 تُطوَّر الكفاءة بثلاث طرق: بالممارسة، وبالتغذية الراجعة، وباكتساب المعارف. الاجتماع ليس أيًّا منها.</div>
+</div></details>
+<details><summary><span class="qid">C1-20</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>De quoi Lakva a-t-elle besoin pour réaliser son autoévaluation ? (plusieurs réponses)</summary><div class="card">
+<div class="arq">ما الذي تحتاجه لاكفا لإجراء تقييمها الذاتي (autoévaluation)؟ (عدة إجابات)</div>
+<div><b>De quoi Lakva a-t-elle besoin pour réaliser son autoévaluation ? (plusieurs réponses)</b></div><ol>
+<li class="g"><b>A)</b> Sa démonstration (contexte de réalisation, actions et résultats). ✔</li>
+<li class=""><b>B)</b> La liste des principales personnes avec qui elle a travaillé sur ce projet.</li>
+<li class="g"><b>C)</b> Les jalons de l&#x27;élément de compétence évalué. ✔</li>
+<li class="g"><b>D)</b> L&#x27;appréciation. ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 التقييم الذاتي يقوم على ثلاثة عناصر: البرهنة (سياق + أفعال + نتائج)، والمعالم كمرجع للتقدير، والتقدير النهائي للمستوى.</div>
+</div></details>
+</div>
+</article>
+<article data-b="M3" style="border-left-color:#0B6E4F">
+<div class="hd"><span class="no" style="background:#0B6E4F">fiche 14</span><span class="ti">Le SUIVI, le BILAN — et le PLAN qui vaut 1 HEURE de formation</span></div>
+<div class="arx" dir="rtl">القاعدة: لمتابعة خطّته، يسجّل المهندس لكلّ نشاط <b>تواريخ الإنجاز</b> و<b>عدد الساعات</b>، و<b>يحتفظ بالمستندات</b> التي تبيّن <b>نوع النشاط ومدّته وتواريخه ومحتواه ومقدّمه</b> وشهادة الحضور أو النتيجة. و<b>إعداد خطّة التطوير</b> نفسه مقبول <b>بحدّ أقصى ساعة واحدة</b> (المادة 3)، شرط <b>التصريح به</b>. أمّا <b>الحصيلة</b> فتقيس <b>أثر الأنشطة على الممارسة وعلى الأهداف المقبلة</b>، وهي المرحلة <b>الأكثر إهمالاً</b> رغم أنها تضمن <b>الانسجام</b>. وتُعرض الخطّة على <b>الرئيس المباشر</b> للموافقة.</div>
+<div class="rgl"><b>La règle :</b> Pour <b>suivre son plan</b>, l&#x27;ingénieur inscrit pour chaque activité les <b>dates de réalisation</b> et le <b>nombre d&#x27;heures</b>, et <b>conserve les pièces justificatives</b> indiquant le <b>type d&#x27;activité, la durée, les dates, le contenu, le fournisseur</b> et, le cas échéant, l&#x27;<b>attestation de présence ou le résultat</b>. La <b>préparation d&#x27;un plan de développement</b> est elle-même admissible <b>jusqu&#x27;à concurrence d&#x27;une (1) heure</b> de formation continue (<b>art. 3</b>) — il faut la <b>déclarer</b>. Le <b>bilan</b> sert à évaluer l&#x27;<b>impact des activités sur la pratique</b> et <b>sur les prochains objectifs</b> ; c&#x27;est l&#x27;étape <b>souvent négligée</b>, alors qu&#x27;elle assure la <b>cohérence</b> de la démarche. Le plan doit être <b>présenté au supérieur pour approbation</b>.</div>
+<pre>SUIVRE, DÉCLARER, PUIS FAIRE LE BILAN
+│
+├─ SUIVI ...... pour chaque activité : DATES + NOMBRE D&#x27;HEURES
+│      pièces = type · durée · dates · contenu · fournisseur ·
+│      attestation ou résultat
+├─ LE PLAN lui-même .. admissible jusqu&#x27;à 1 HEURE (art. 3)
+│      --&gt; mais il faut le DÉCLARER pour qu&#x27;il compte
+├─ APPROBATION .. présenter le plan au SUPÉRIEUR
+│      --&gt; discuter charge de travail et mandats
+├─ BILAN ...... impact sur la PRATIQUE + sur les PROCHAINS
+│      OBJECTIFS --&gt; étape souvent NÉGLIGÉE
+│
+└─ ⚠ PIÈGE : préparer le plan ne suffit pas --&gt; l&#x27;heure ne
+   compte que si elle est DÉCLARÉE au dossier de l&#x27;Ordre</pre>
+<div class="img"><div class="arx" dir="rtl">مثال: تُعدّ خطّتك صباح السبت: تُحتسب تلك الساعة تكويناً مستمرّاً — لكن فقط إن سجّلتها في ملفّك على البوّابة، وإلاّ فهي غير موجودة لدى النقابة.</div>☀ <b>Exemple :</b> tu prépares ton plan un samedi matin : cette heure compte comme formation continue — mais seulement si tu l&#x27;inscris dans ton dossier au portail. Sinon, elle n&#x27;existe pas pour l&#x27;Ordre.</div>
+<div class="qz"><b class="t">🎯 QUESTIONS DU RECUEIL SUR CETTE FICHE</b>
+<details><summary><span class="qid">C1-12</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Steven note l&#x27;activité de formation réalisée, la date et le nombre d&#x27;heures, et la déclare à son dossier de formation…</summary><div class="card">
+<div class="arq">يسجّل ستيفن نشاط التكوين الذي أنجزه، والتاريخ، وعدد الساعات، ويعلن عنه في ملفّه الخاص بالتكوين المستمر (formation continue)…</div>
+<div><b>Steven note l&#x27;activité de formation réalisée, la date et le nombre d&#x27;heures, et la déclare à son dossier de formation continue. À quelle étape du processus cette situation fait-elle référence ?</b></div><ol>
+<li class=""><b>A)</b> Planifier le développement de ses compétences</li>
+<li class="g"><b>B)</b> Effectuer le suivi de son plan ✔</li>
+<li class=""><b>C)</b> Faire le bilan de ses activités</li>
+</ol>
+<div class="rep">✔ <b>Réponse : B</b></div>
+<div class="arq" style="margin:9px 0 0">💡 المراحل الثلاث: التخطيط ← المتابعة (التسجيل والتصريح) ← الحصيلة (قياس الأثر). التدوين والتصريح = متابعة.</div>
+</div></details>
+<details><summary><span class="qid">C1-09</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Sura, ingénieure, fournit une rétroaction constructive au technicien avec lequel elle travaille. S&#x27;agit-il d&#x27;une…</summary><div class="card">
+<div class="arq">سورا، وهي مهندسة، تقدّم ملاحظات بنّاءة (rétroaction constructive) للتقني الذي تعمل معه. هل يتعلّق الأمر بكفاءة…</div>
+<div><b>Sura, ingénieure, fournit une rétroaction constructive au technicien avec lequel elle travaille. S&#x27;agit-il d&#x27;une compétence fondamentale ou d&#x27;une compétence en lien avec la pratique professionnelle de l&#x27;ingénierie ?</b></div><ol>
+<li class="g"><b>A)</b> Compétence fondamentale ✔</li>
+<li class=""><b>B)</b> Compétence en lien avec la pratique professionnelle de l&#x27;ingénierie</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A</b></div>
+<div class="arq" style="margin:9px 0 0">💡 الإطار المرجعي فيه ١٠ مجالات: ٤ عرضانية (أساسية) و٦ تقنية. التغذية الراجعة علائقية إذن عرضانية.</div>
+</div></details>
+<details><summary><span class="qid">C1-13</span> <span class="src">Conclusion Bloc 1</span><span class="tap">👆 toucher pour ouvrir</span><br>Quels sont les 3 moyens de développement des compétences ?</summary><div class="card">
+<div class="arq">ما هي الوسائل الثلاث لتطوير الكفاءات (compétences)؟</div>
+<div><b>Quels sont les 3 moyens de développement des compétences ?</b></div><ol>
+<li class="g"><b>A)</b> Expérience de travail ✔</li>
+<li class=""><b>B)</b> Réunion de travail</li>
+<li class="g"><b>C)</b> Rétroaction ✔</li>
+<li class="g"><b>D)</b> Acquisition de connaissances ✔</li>
+</ol>
+<div class="rep">✔ <b>Réponse : A, C, D</b></div>
+<div class="arq" style="margin:9px 0 0">💡 تُطوَّر الكفاءة بثلاث طرق: بالممارسة، وبالتغذية الراجعة، وباكتساب المعارف. الاجتماع ليس أيًّا منها.</div>
+</div></details>
+</div>
+</article>
+</div>
+<script>
+var F='all';
+function flt(btn,f){F=f;
+  document.querySelectorAll('.barin button[data-f]').forEach(function(b){
+    b.style.background='#fff'; b.style.color=b.dataset.c;});
+  btn.style.background=btn.dataset.c; btn.style.color='#fff'; apply();}
+function apply(){
+  var q=(document.getElementById('q').value||'').trim().toLowerCase(), n=0;
+  document.querySelectorAll('article').forEach(function(a){
+    var ok=(F==='all'||a.dataset.b===F)&&(!q||a.textContent.toLowerCase().indexOf(q)>=0);
+    a.classList.toggle('hide',!ok); if(ok) n++;});
+  document.querySelectorAll('h2.grp').forEach(function(h){
+    var vis=false,e=h.nextElementSibling;
+    while(e&&e.tagName==='ARTICLE'){if(!e.classList.contains('hide'))vis=true;e=e.nextElementSibling;}
+    h.classList.toggle('hide',!vis);});
+  document.getElementById('cnt').textContent=n+' fiche'+(n>1?'s':'');}
+function allDet(b){
+  var d=document.querySelectorAll('details'), open=b.dataset.o==='1';
+  d.forEach(function(x){x.open=!open;}); b.dataset.o=open?'0':'1';
+  b.textContent=open?'Tout révéler':'Tout masquer';}
+function arTog(b){var on=document.body.classList.toggle('ar');
+  b.style.background=on?'#0E7C86':'#fff'; b.style.color=on?'#fff':'';
+  b.textContent=on?'✕ عربي':'عربي';}
+apply();
+</script></body></html>
